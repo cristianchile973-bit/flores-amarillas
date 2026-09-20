@@ -338,11 +338,23 @@
       #open-btn:hover { transform: scale(1.07); box-shadow: 0 6px 28px rgba(210,160,0,0.55); }
     </style>
     <!-- Hacer que openCard este disponible globalmente antes de que se analice el cuerpo -->
-    <script>window._animaReady = false;</script>
+    <script>
+      window._animaReady = false;
+      function startMusic() {
+        const music = document.getElementById('bg-music');
+        if (!music) return;
+        music.volume = 0.35;
+        music.play().catch(() => {});
+      }
+    </script>
   </head>
 
  
   <body>
+    <!-- Música de fondo: coloca "Corazón mágico.mp3" en la misma carpeta que este HTML -->
+    <audio id="bg-music" loop preload="auto">
+      <source src="Coraz%C3%B3n%20m%C3%A1gico.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- ══ Contenedor de petalos ══ -->
     <div id="petals-container"></div>
@@ -375,19 +387,20 @@
         <h2>✨ Tu jardín de amor ✨</h2>
         <button id="plant-btn">🌱 Plantar la semilla</button>
         <div id="canvas-wrapper">
-          <canvas id="tree-canvas" width="520" height="500" aria-label="Árbol floreciente en forma de corazón con flores amarillas"></canvas>
+        <canvas id="tree-canvas" width="520" height="500" aria-label="Árbol floreciente en forma de corazón con flores amarillas"></canvas>
         </div>
-      </section>
+    </section>
 
-      <!-- ── Sección de mensaje ── -->
-      <section id="message-section" aria-labelledby="msg-heading">
+    <!-- ── Sección de mensaje ── -->
+    <section id="message-section" aria-labelledby="msg-heading">
         <p class="subtitle">— Con todo mi corazón —</p>
         <h1 id="msg-heading">Flores Amarillas para el<br>amor de mi vida</h1>
         <div class="message-body">
-          <p>Si pudiera elegir un lugar seguro, sería a tu lado.</p>
-          <p>Cuanto más tiempo estoy contigo, más te amo.</p>
-          <p>Cada flor que florece en este árbol es un latido de mi corazón<br>que te dice cuánto significas para mí.</p>
-          <span class="sign">— I Love You! 💛</span>
+        <p>Si pudiera elegir un lugar seguro, sería a tu lado.<br>Cuanto más tiempo estoy contigo, más te amo</bre></p>
+        <p>Cada flor que florece en este árbol es un latido de mi corazón<br>que te dice cuánto significas para mí.</p>
+        <p>Aunque hoy no puedo darte por el momento un ramo en mis manos<br> pero si puedo darte un jardín en mi corazón</p>
+        <p>Dicen que las flores amarillas son para prometer amor eterno,<br> entonces recordé que quiero estar contigo siempre,<br> con la sinceridad y la honestidad en nosotros</p>
+        <span class="sign">—Astrid Aguilar Benavides, I Love You! 💛</span>
         </div>
       </section>
 
@@ -413,7 +426,7 @@
           </div>
         </div>
         <div class="date-picker-wrap">
-  <label for="start-date">📅 Fecha en que comenzó tu amor:</label>
+  <label for="start-date">📅 Fecha en que comenzó mi amor:</label>
   <input type="date" id="start-date" disabled />
 </div>
       </section>
@@ -697,6 +710,7 @@ const outlinePts = getHeartPoints(cx, cy, size, 90);   // más flores alrededor
       //  Superposicion de introduccion
       // ═══════════════════════════════════════════════
       function openCard() {
+        startMusic();
         const overlay = document.getElementById('intro-overlay');
         if (!overlay) return;
         overlay.classList.add('fade-out');
@@ -705,6 +719,7 @@ const outlinePts = getHeartPoints(cx, cy, size, 90);   // más flores alrededor
         setTimeout(() => startBloom(), 950);
       }
 
+      document.addEventListener('pointerdown', startMusic, { once: true });
       document.querySelector('.seed-icon').addEventListener('click', openCard);
       document.getElementById('open-btn').addEventListener('click', openCard);
       document.getElementById('plant-btn').addEventListener('click', function () {
@@ -738,7 +753,7 @@ const outlinePts = getHeartPoints(cx, cy, size, 90);   // más flores alrededor
       const pad = n => String(n).padStart(2, '0');
 
 // FECHA FIJA (AÑO, MES-1, DÍA)
-const startDate = new Date(2024, 8, 13); // 13 Septiembre 2024
+const startDate = new Date(2026, 7, 2); // 2 de septiembre 2026
 
 // Mostrar la fecha fija en el input
 const dateInput = document.getElementById('start-date');
